@@ -22,7 +22,7 @@ const VideoCard = ({ data }) => {
   };
 
   return (
-    <div className="flex flex-col p-4 border border-blue-100">
+    <div className="flex flex-col p-4 shadow-md border border-1">
       <div className="cursor-pointer" onClick={() => setModal(!modal)}>
         <img
           className="h-44 w-full"
