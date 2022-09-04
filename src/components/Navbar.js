@@ -14,13 +14,13 @@ const Navbar = () => {
           <SearchBar />
         </div>
         <div className=" w-1/4 flex lg:text-lg text-sm justify-around items-center">
-          <NavLink className="mx-4 pb-1 hidden md:inline-block" to="/search">
+          <NavLink className="mx-4 pb-1 " to="/search">
             Home
           </NavLink>
-          <NavLink className="mx-4 pb-1 hidden md:inline-block" to="/fav">
+          <NavLink className="mx-4 pb-1" to="/fav">
             Favourites
           </NavLink>
-          {/* <NavLink className="mx-4 pb-1 hidden md:inline-block" to="/stats">
+          {/* <NavLink className="mx-4 pb-1" to="/stats">
             Stats
           </NavLink> */}
         </div>
