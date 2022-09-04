@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
 import Api from "./Api";
 
 export const userSearchThunk = createAsyncThunk(
@@ -10,11 +11,22 @@ export const userSearchThunk = createAsyncThunk(
         params: {
           q: mode,
         },
-    });
+      });
       return res.data;
     } catch (error) {
       thunkApi.rejectWithValue(error);
     }
+  }
+);
+
+export const userFavThunk = createAsyncThunk("userfavthunk", async (mode) => {
+  return mode;
+});
+
+export const userUnfavThunk = createAsyncThunk(
+  "userunfavthunk",
+  async (mode) => {
+    return mode
   }
 );
 
@@ -54,10 +66,54 @@ const userSearch = createSlice({
   },
 });
 
+const userFav = createSlice({
+  name: "userfav",
+  initialState: {
+    data: [],
+  },
+  reducers: {
+    resetUserFav: (state) => {
+      state.data = null;
+      return state;
+    },
+  },
+  extraReducers: {
+    [userFavThunk.fulfilled]: (state, { payload }) => {
+      if (payload.isFav === true) {
+        state.data = [...state.data, payload];
+      }
+    },
+  },
+});
+
+const userUnFav = createSlice({
+  name: "userunfav",
+  initialState: {
+    data: null,
+  },
+  reducers: {
+    resetUserFav: (state) => {
+      state.data = null;
+      return state;
+    },
+  },
+  extraReducers: {
+    [userUnfavThunk.fulfilled]: (state, { payload }) => {
+      if (payload.isFav === true) {
+        state.data = payload?.data?.etag;
+      }
+    },
+  },
+});
+
 export const { userSearches } = userSearch.actions;
+export const { userFavs } = userFav.actions;
+export const { userUnfavs } = userUnFav.actions;
 
 const videoReducers = {
   userSearches: userSearch.reducer,
+  userFavs: userFav.reducer,
+  userUnfavs: userUnFav.reducer,
 };
 
 export default videoReducers;
