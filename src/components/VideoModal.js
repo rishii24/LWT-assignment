@@ -1,11 +1,17 @@
 import React from "react";
 
-const VideoModal = ({ data }) => {
+const VideoModal = ({ data, setModal }) => {
   const videoSrc = `https://www.youtube.com/embed/${data.id.videoId}`;
 
   return (
     <div className="flex">
-      <div className="flex justify-center items-center h-3/4 fixed left-16 md:left-28 lg:left-64 top-12 bg-white z-50 w-2/3">
+      <div className="flex flex-col justify-center items-center h-3/4 fixed left-16 md:left-28 lg:left-64 top-12 bg-black z-50 w-2/3">
+        <button
+          className="flex absolute top-0 right-0 px-2 py-1 bg-green-400 text-white text-xs"
+          onClick={() => setModal(false)}
+        >
+          exit
+        </button>
         <iframe
           height="380"
           width="750"
