@@ -13,7 +13,7 @@ const FavCard = ({ data }) => {
   };
 
   return (
-    <div className="flex flex-col p-4 border border-blue-100">
+    <div className="flex flex-col p-4 border border-blue-100 shadow-md">
       <div className="cursor-pointer" onClick={() => setModal(!modal)}>
         <img
           className="lg:h-44 md:h-36 h-32 w-full"
